@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('secretarias', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->longText('descricao');
+            $table->text('des_simplificada');
+            $table->integer('maximo');
+            $table->integer('minimo');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secretarias');
+        Schema::dropIfExists('courses');
     }
 };
