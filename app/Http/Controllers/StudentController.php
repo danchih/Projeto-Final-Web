@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Professor;
+use App\Models\Student;
 
-class ProfessorController extends Controller
+class StudentController extends Controller
 {
     public function create(){
-        return view('matricula.m_professor');
+        return view('matricula.m_student');
     }
 
     public function store(Request $request){
 
-        Professor::create([
+        Student::create([
             'nome' => $request->nome,
             'CPF' => $request->CPF,
             'CEP' => $request->CEP,
@@ -22,6 +22,7 @@ class ProfessorController extends Controller
             'complemento' => $request->complemento,
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
+            'filme' => $request->filme,
             'usuario' => $request->usuario,
             'senha' => $request->senha,
         ]);

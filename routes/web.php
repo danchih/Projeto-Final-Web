@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProfessorController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/requisicao', function () {
-    $json = \Illuminate\Support\Facades\Http::get('https://learn-laravel.cf/movie/1')->body();
-    dd($json);
-});
+Route::get('/students', [StudentController::class, 'index']);
+Route::get('/api', [StudentController::class, 'invoke']);
+Route::get('/m_student', [StudentController::class, 'create']);
+Route::post('/m_student', [StudentController::class, 'store']);
+
+Route::get('/professors', [ProfessorController::class, 'index']);
+Route::get('/m_professor', [ProfessorController::class, 'create']);
+Route::post('/m_professor', [ProfessorController::class, 'store']);

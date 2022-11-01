@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AlunoController extends Controller
+use App\Models\Course;
+
+class CourseController extends Controller
 {
     //
 }
