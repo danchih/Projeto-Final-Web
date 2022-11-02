@@ -8,6 +8,13 @@ use App\Models\Professor;
 
 class ProfessorController extends Controller
 {
+    public function index(){
+        
+        $professors = Professor::all();
+
+        return view('professors',['professors' => $professors]);
+    }
+    
     public function create(){
         return view('matricula.m_professor');
     }
