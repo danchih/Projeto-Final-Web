@@ -45,7 +45,7 @@
         <input type="text" name="senha" class="form-control" id="senha">
     </div>
     <div class="col-12">
-        <input type="submit" class="btn btn-primary" value="Cadastrar">
+        <input type="submit" class="btn btn-primary" value="Matricular Professor">
     </div>
 </form>
 

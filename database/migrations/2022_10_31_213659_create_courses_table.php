@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('des_simplificada');
             $table->integer('maximo');
             $table->integer('minimo');
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -8,6 +8,13 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function index(){
+        
+        $students = Student::all();
+
+        return view('students',['students' => $students]);
+    }
+
     public function create(){
         return view('matricula.m_student');
     }
@@ -29,5 +36,15 @@ class StudentController extends Controller
 
         return redirect('/');
     }
+    
+    
+    //public function update(Request $request, Comment $comment)
+    //{
+    //    $comment->comment = $request->comment;
+    //    $comment->save();
+
+    //    return redirect()->route('blogs.index')
+    //    ->with('success','Comment edited successfully');
+    //}
 
 }
