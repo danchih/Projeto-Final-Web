@@ -30,3 +30,7 @@ Route::get('/professors', [ProfessorController::class, 'index']);
 Route::get('/m_professor', [ProfessorController::class, 'create']);
 Route::post('/m_professor', [ProfessorController::class, 'store']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
