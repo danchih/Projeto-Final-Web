@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Home')
 
@@ -6,10 +6,6 @@
 
 
 <div class="h1 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Trabalho Web</div>
-
-<a class="btn btn-primary" href="/m_professor" role="button">Matricular Professor</a>
-<a class="btn btn-primary" href="/m_student" role="button">Matricular Aluno</a>
-<a class="btn btn-primary" href="/m_course" role="button">Cadastrar Curso</a>
 
 
 <div class="row row-cols-1 row-cols-md-4 g-4">

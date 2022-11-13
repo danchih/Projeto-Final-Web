@@ -1,11 +1,15 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Professor')
 
 @section('content')
 
 
-<div class="h1 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Trabalho Web</div>
+@foreach($professors as $professor)
 
+    <img src="/img/{{ $professor->avatar }}" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left" alt="avatar">
+    <div class="h1">{{ $professor->nome }}</div>
+
+@endforeach
 
 @endsection

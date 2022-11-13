@@ -19,10 +19,10 @@ return new class extends Migration
             $table->bigInteger('CPF');
             $table->integer('CEP');
             $table->string('endereco');
-            $table->string('complemento');
+            $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');
-            $table->string('filme');
+            $table->string('filme')->nullable();
             $table->string('usuario');
             $table->string('senha');
             $table->timestamps();

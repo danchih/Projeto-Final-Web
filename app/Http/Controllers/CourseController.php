@@ -16,7 +16,7 @@ class CourseController extends Controller
     }
     
     public function create(){
-        return view('matricula.m_course');
+        return view('cadastro.m_course');
     }
 
     public function store(Request $request){
@@ -27,9 +27,28 @@ class CourseController extends Controller
             'des_simplificada' => $request->des_simplificada,
             'maximo' => $request->maximo,
             'minimo' => $request->minimo,
-            'status' => $request->status,
         ]);
 
-        return redirect('/');
+        return redirect()->route('admin');
+    }
+
+        /*
+    |--------------------------------------------------------------------------
+    | Funcao show
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para fazer um relacionamento One to Many entre Professor 
+    | e Courses
+    |
+    */
+    public function show(Course $course){
+
+        echo "<p>Nome do Curso(courses): { $course->nome }</p>";
+
+        $professor = $course->professor()->first();
+        if($professor){
+            echo "<p>Nome(professor): { $professor->nome }</p>";
+        }
+    
     }
 }

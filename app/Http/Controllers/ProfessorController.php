@@ -16,7 +16,7 @@ class ProfessorController extends Controller
     }
     
     public function create(){
-        return view('matricula.m_professor');
+        return view('cadastro.m_professor');
     }
 
     public function store(Request $request){
@@ -33,7 +33,33 @@ class ProfessorController extends Controller
             'senha' => $request->senha,
         ]);
 
-        return redirect('/');
+        return redirect()->route('admin');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao show
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para fazer um relacionamento One to Many entre Professor
+    | e Courses
+    |
+    */
+    public function show($id){
+
+        $professor = Professor::where('id', $id)->first();
+        if($professor){
+            echo "<p>Nome(professor): { $professor->nome }</p>";
+        }
+
+        $courses = $professor->courses()->get();
+        if($courses){
+            foreach($courses as $course){
+                echo "<p>Nome do Curso(courses): { $course->nome }</p>";
+            };
+        }
+    }
+
+
 
 }

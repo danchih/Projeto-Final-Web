@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'MatriculaProfessor')
 
 @section('content')
 
-<h2>Matricula do Professor</h2>
+<h2>Cadastrar Professor</h2>
 
 <form class="row g-3" action="/m_professor" method="POST">
     @csrf
@@ -45,7 +45,7 @@
         <input type="text" name="senha" class="form-control" id="senha">
     </div>
     <div class="col-12">
-        <input type="submit" class="btn btn-primary" value="Matricular Professor">
+        <input type="submit" class="btn btn-primary" value="Cadastrar">
     </div>
 </form>
 

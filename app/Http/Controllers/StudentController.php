@@ -16,7 +16,7 @@ class StudentController extends Controller
     }
 
     public function create(){
-        return view('matricula.m_student');
+        return view('cadastro.m_student');
     }
 
     public function store(Request $request){
@@ -34,17 +34,32 @@ class StudentController extends Controller
             'senha' => $request->senha,
         ]);
 
-        return redirect('/');
+        return redirect()->route('admin');
     }
-    
-    
-    //public function update(Request $request, Comment $comment)
-    //{
-    //    $comment->comment = $request->comment;
-    //    $comment->save();
 
-    //    return redirect()->route('blogs.index')
-    //    ->with('success','Comment edited successfully');
-    //}
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao show
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para fazer um relacionamento One to One entre User e
+    | Student 
+    | (usuario seria a mesma coisa que $user_id))
+    | ($name seria a mesma ideia de $id) 
+    |
+    */
+
+    public function show($usuario){
+
+        $student = Student::where('usuario', $usuario)->first();
+        if($student){
+            echo "<p>Usuario(student): { $student->usuario }</p>";
+        }
+
+        $user = $student->user()->first();
+        if($user){
+            echo "<p>Usuario(user): { $user->name }</p>";
+        }
+    }
 
 }
