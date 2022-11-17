@@ -6,7 +6,7 @@
 
 <h2>Cadastrar Curso</h2>
 
-<form class="row g-3" action="/m_course" method="POST">
+<form class="row g-3" action="/m_course/do" method="POST">
     @csrf
     <div class="col-12">
         <label for="nome" class="form-label">Nome do Curso</label>

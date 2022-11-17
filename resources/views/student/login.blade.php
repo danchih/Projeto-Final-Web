@@ -11,7 +11,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form class="form-signin" method="POST" action="{{ route('admin.login.do') }}">
+                    <form class="form-signin" method="POST" action="{{ route('student.login.do') }}">
                         @csrf
 
                         @if($errors->all())
@@ -23,18 +23,18 @@
                         @endif
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Usuario') }}</label>
+                            <label for="usuario" class="col-md-4 col-form-label text-md-end">{{ __('Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
+                                <input id="usuario" type="text" class="form-control" name="usuario" required autocomplete="usuario">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="senha" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
+                                <input id="senha" type="password" class="form-control" name="senha" required autocomplete="current-password">
                             </div>
                         </div>
 

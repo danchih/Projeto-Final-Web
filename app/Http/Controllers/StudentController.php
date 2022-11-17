@@ -6,8 +6,20 @@ use Illuminate\Http\Request;
 
 use App\Models\Student;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class StudentController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao index
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para retornar os Students para a view
+    |
+    */
+
     public function index(){
         
         $students = Student::all();
@@ -15,9 +27,27 @@ class StudentController extends Controller
         return view('students',['students' => $students]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao create
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para criar uma pagina de cadastro 
+    |
+    */
+
     public function create(){
-        return view('cadastro.m_student');
+        return view('cadastro.matricula');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao store
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para cadastrar um novo Student no banco de dados
+    |
+    */
 
     public function store(Request $request){
 
@@ -30,8 +60,7 @@ class StudentController extends Controller
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
             'filme' => $request->filme,
-            'usuario' => $request->usuario,
-            'senha' => $request->senha,
+            'user_id' => $request->user_id,
         ]);
 
         return redirect()->route('admin');
@@ -42,24 +71,18 @@ class StudentController extends Controller
     | Funcao show
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para fazer um relacionamento One to One entre User e
-    | Student 
-    | (usuario seria a mesma coisa que $user_id))
-    | ($name seria a mesma ideia de $id) 
+    | Funcao utilizada para fazer um relacionamento Many to Many entre Courses
+    | e Students 
     |
     */
 
-    public function show($usuario){
+    public function show(Student $student){
 
-        $student = Student::where('usuario', $usuario)->first();
-        if($student){
-            echo "<p>Usuario(student): { $student->usuario }</p>";
-        }
+        $courses = $student->courses()->get();
 
-        $user = $student->user()->first();
-        if($user){
-            echo "<p>Usuario(user): { $user->name }</p>";
-        }
+        return view('infostudent', compact('student', 'courses'));
     }
+
+
 
 }

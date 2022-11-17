@@ -24,8 +24,11 @@ class AuthController extends Controller
     public function dashboard(){
 
         if(Auth::check() === true){
-            /** dd(Auth::user()); */
+            if(Auth::user()->name === 'Secretaria'){
             return view(view: 'admin.dashboard');
+            }else{
+                return redirect()->route('professor');
+            }
         }
         return redirect()->route(route: 'admin.login');
     }
@@ -43,7 +46,7 @@ class AuthController extends Controller
 
     public function showLoginForm(){
 
-            return view(view: 'admin.formLogin');
+        return view(view: 'admin.formLogin');
     }
 
     /*
@@ -75,23 +78,6 @@ class AuthController extends Controller
         }else{
             return redirect()->back()->withInput()->withErrors(['Os dados informados não conferem!']);
         }
-    }
-
-        /*
-    |--------------------------------------------------------------------------
-    | Funcao logout
-    |--------------------------------------------------------------------------
-    |
-    | Funcao utilizada para deslogar
-    |
-    */
-
-    /*  PS: ainda nao estou utilizando ela */
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        return redirect()->route(route: '/');
     }
 
 }

@@ -12,13 +12,14 @@ class Course extends Model
     protected $table = 'courses';
     protected $fillable = ['nome', 'descricao', 'des_simplificada', 'maximo', 'minimo', 'status'];
 
-    public function students() {
-        return $this->belongsToMany('App\Models\Student', 'course_student', 'course_id', 'student_id');
-    }
-
     //Relacionamento One (professor) to Many (courses)
     public function professor() {
         return $this->belongsTo(Professor::class, foreignKey: 'professor_id', ownerKey: 'id');
+    }
+
+    //Relacionamento Many to Many
+    public function students(){
+        return $this->belongsToMany(Student::class, 'course_student', 'course_id', 'student_id');
     }
 
 }

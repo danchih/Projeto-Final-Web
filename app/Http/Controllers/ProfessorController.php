@@ -8,16 +8,43 @@ use App\Models\Professor;
 
 class ProfessorController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao index
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para retornar os Professors para a view
+    |
+    */
+
     public function index(){
         
         $professors = Professor::all();
 
-        return view('professors',['professors' => $professors]);
+        return view('admin.allprofessors',['professors' => $professors]);
     }
     
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao create
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para criar uma pagina de cadastro 
+    |
+    */
+
     public function create(){
-        return view('cadastro.m_professor');
+        return view('cadastro.matricula');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao store
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para cadastrar um novo Professor no banco de dados
+    |
+    */
 
     public function store(Request $request){
 
@@ -29,8 +56,7 @@ class ProfessorController extends Controller
             'complemento' => $request->complemento,
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
-            'usuario' => $request->usuario,
-            'senha' => $request->senha,
+            'user_id' => $request->user_id,
         ]);
 
         return redirect()->route('admin');
@@ -45,19 +71,26 @@ class ProfessorController extends Controller
     | e Courses
     |
     */
+
     public function show($id){
 
         $professor = Professor::where('id', $id)->first();
-        if($professor){
-            echo "<p>Nome(professor): { $professor->nome }</p>";
-        }
-
         $courses = $professor->courses()->get();
-        if($courses){
-            foreach($courses as $course){
-                echo "<p>Nome do Curso(courses): { $course->nome }</p>";
-            };
-        }
+
+        return view('infoprofessor', compact('professor', 'courses'));
+    }
+
+
+    
+
+
+
+    public function findprofessor($id) {
+
+        $professor = Professor::find($id);
+        
+        return view('usuario', compact('professor'));
+
     }
 
 

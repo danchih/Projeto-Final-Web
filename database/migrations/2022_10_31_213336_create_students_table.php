@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->string('filme')->nullable();
-            $table->string('usuario');
-            $table->string('senha');
             $table->timestamps();
         });
     }

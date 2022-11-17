@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('complemento');
             $table->string('bairro');
             $table->string('cidade');
-            $table->string('usuario');
-            $table->string('senha');
             $table->string('avatar')->default('default.jpg');
             $table->timestamps();
         });
