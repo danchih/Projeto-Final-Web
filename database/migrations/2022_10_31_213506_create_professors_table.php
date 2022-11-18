@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('professores', function (Blueprint $table) {
+        Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('CPF');
+            $table->bigInteger('CPF');
             $table->integer('CEP');
             $table->string('endereco');
             $table->string('complemento');
             $table->string('bairro');
             $table->string('cidade');
-            $table->string('usuario');
-            $table->string('senha');
+            $table->string('avatar')->default('default.jpg');
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professores');
+        Schema::dropIfExists('professors');
     }
 };

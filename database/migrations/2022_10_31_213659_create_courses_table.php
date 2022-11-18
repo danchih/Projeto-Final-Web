@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('CPF');
-            $table->integer('CEP');
-            $table->string('endereco');
-            $table->string('complemento');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('filme');
-            $table->string('usuario');
-            $table->string('senha');
+            $table->longText('descricao');
+            $table->text('des_simplificada');
+            $table->integer('maximo');
+            $table->integer('minimo');
+            $table->integer('status') ->default('1');
+            $table->unsignedBigInteger('professor_id')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('courses');
     }
 };

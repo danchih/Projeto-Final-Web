@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Professor;
+use App\Models\Course;
 
-class ProfessorController extends Controller
+class CourseController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
     | Funcao index
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para retornar os Professors para a view
+    | Funcao utilizada para retornar os Courses para a view
     |
     */
 
     public function index(){
         
-        $professors = Professor::all();
+        $courses = Course::all();
 
-        return view('admin.allprofessors',['professors' => $professors]);
+        return view('welcome',['courses' => $courses]);
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Funcao create
@@ -32,9 +32,9 @@ class ProfessorController extends Controller
     | Funcao utilizada para criar uma pagina de cadastro 
     |
     */
-
+    
     public function create(){
-        return view('cadastro.matricula');
+        return view('cadastro.m_course');
     }
 
     /*
@@ -42,21 +42,18 @@ class ProfessorController extends Controller
     | Funcao store
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para cadastrar um novo Professor no banco de dados
+    | Funcao utilizada para cadastrar um novo Course no banco de dados
     |
     */
 
     public function store(Request $request){
 
-        Professor::create([
+        Course::create([
             'nome' => $request->nome,
-            'CPF' => $request->CPF,
-            'CEP' => $request->CEP,
-            'endereco' => $request->endereco,
-            'complemento' => $request->complemento,
-            'bairro' => $request->bairro,
-            'cidade' => $request->cidade,
-            'user_id' => $request->user_id,
+            'descricao' => $request->descricao,
+            'des_simplificada' => $request->des_simplificada,
+            'maximo' => $request->maximo,
+            'minimo' => $request->minimo,
         ]);
 
         return redirect()->route('admin');
@@ -67,32 +64,19 @@ class ProfessorController extends Controller
     | Funcao show
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para fazer um relacionamento One to Many entre Professor
+    | Funcao utilizada para fazer um relacionamento One to Many entre Professor 
+    | e Courses
+    | Funcao utilizada para fazer um relacionamento Many to Many entre Students 
     | e Courses
     |
     */
+    public function show(Course $course){
 
-    public function show($id){
+        $professor = $course->professor()->first();
+        $students = $course->students()->get();
 
-        $professor = Professor::where('id', $id)->first();
-        $courses = $professor->courses()->get();
-
-        return view('infoprofessor', compact('professor', 'courses'));
-    }
-
-
-    
-
-
-
-    public function findprofessor($id) {
-
-        $professor = Professor::find($id);
-        
-        return view('usuario', compact('professor'));
+        return view('infocourse', compact('course', 'professor', 'students'));
 
     }
-
-
 
 }

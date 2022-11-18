@@ -4,26 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Professor;
+use App\Models\Student;
 
-class ProfessorController extends Controller
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class StudentController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
     | Funcao index
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para retornar os Professors para a view
+    | Funcao utilizada para retornar os Students para a view
     |
     */
 
     public function index(){
         
-        $professors = Professor::all();
+        $students = Student::all();
 
-        return view('admin.allprofessors',['professors' => $professors]);
+        return view('students',['students' => $students]);
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Funcao create
@@ -42,13 +45,13 @@ class ProfessorController extends Controller
     | Funcao store
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para cadastrar um novo Professor no banco de dados
+    | Funcao utilizada para cadastrar um novo Student no banco de dados
     |
     */
 
     public function store(Request $request){
 
-        Professor::create([
+        Student::create([
             'nome' => $request->nome,
             'CPF' => $request->CPF,
             'CEP' => $request->CEP,
@@ -56,6 +59,7 @@ class ProfessorController extends Controller
             'complemento' => $request->complemento,
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
+            'filme' => $request->filme,
             'user_id' => $request->user_id,
         ]);
 
@@ -67,30 +71,16 @@ class ProfessorController extends Controller
     | Funcao show
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para fazer um relacionamento One to Many entre Professor
-    | e Courses
+    | Funcao utilizada para fazer um relacionamento Many to Many entre Courses
+    | e Students 
     |
     */
 
-    public function show($id){
+    public function show(Student $student){
 
-        $professor = Professor::where('id', $id)->first();
-        $courses = $professor->courses()->get();
+        $courses = $student->courses()->get();
 
-        return view('infoprofessor', compact('professor', 'courses'));
-    }
-
-
-    
-
-
-
-    public function findprofessor($id) {
-
-        $professor = Professor::find($id);
-        
-        return view('usuario', compact('professor'));
-
+        return view('infostudent', compact('student', 'courses'));
     }
 
 

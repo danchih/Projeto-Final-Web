@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('secretarias', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('students', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
         });
     }
 
@@ -26,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secretarias');
+        Schema::table('students', function (Blueprint $table) {
+            $table->foreignId('user_id')
+            ->constrained()
+            ->onDelete('cascade');
+        });
     }
 };
