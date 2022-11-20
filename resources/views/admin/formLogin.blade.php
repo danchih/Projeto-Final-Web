@@ -23,10 +23,10 @@
                         @endif
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Usuario') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
+                                <input id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
                             </div>
                         </div>
 

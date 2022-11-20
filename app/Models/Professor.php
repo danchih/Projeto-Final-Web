@@ -16,4 +16,9 @@ class Professor extends Model
         return $this->hasMany(Course::class, foreignKey: 'professor_id', localKey: 'id');
     }
 
+    // Relacionamento One (user) to One (professor)
+    public function user(){
+        return $this->belongsTo(User::class, foreignKey: 'user_id', ownerKey: 'id');
+    }
+
 }

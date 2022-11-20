@@ -17,4 +17,9 @@ class Student extends Model
         return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id');
     }
 
+    // Relacionamento One (user) to One (student)
+    public function user(){
+        return $this->belongsTo(User::class, foreignKey: 'user_id', ownerKey: 'id');
+    }
+
 }

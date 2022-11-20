@@ -24,7 +24,7 @@ class StudentController extends Controller
         
         $students = Student::all();
 
-        return view('students',['students' => $students]);
+        return view('admin.allstudents',['students' => $students]);
     }
 
     /*
@@ -79,8 +79,39 @@ class StudentController extends Controller
     public function show(Student $student){
 
         $courses = $student->courses()->get();
+        $user = $student->user()->first();
 
-        return view('infostudent', compact('student', 'courses'));
+        return view('info.student', compact('student', 'user', 'courses'));
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao formEditStudent e edit
+    |--------------------------------------------------------------------------
+    |
+    | Funcoes utilizadas para criar uma view de edicao de cadastro e fazer a
+    | edicao de informacoes de cadastro
+    |
+    */
+
+    public function formEditStudent(Student $student){
+        return view('atualizar.a_student', ['student' => $student]);
+    }
+
+    public function edit(Student $student, Request $request){
+
+        $student->nome = $request->nome;
+        $student->CPF = $request->CPF;
+        $student->CEP = $request->CEP;
+        $student->endereco = $request->endereco;
+        $student->complemento = $request->complemento;
+        $student->bairro = $request->bairro;
+        $student->cidade = $request->cidade;
+        $student->filme = $request->filme;
+
+        $student->save();
+
+        return redirect()->back()->with('Dados atualizados com sucesso!!');
     }
 
 

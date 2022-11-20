@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Course;
 
+use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
+
 class CourseController extends Controller
 {
     /*
@@ -71,12 +74,56 @@ class CourseController extends Controller
     |
     */
     public function show(Course $course){
-
+        
         $professor = $course->professor()->first();
         $students = $course->students()->get();
 
-        return view('infocourse', compact('course', 'professor', 'students'));
+        return view('info.course', compact('course', 'professor', 'students'));
 
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao joinCourse
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para utilizar e salvar os dados da tabela pivo 
+    | course_student do relacionamento Many to Many entre Students e Courses
+    |
+    */
+    public function joinCourse($id){
+
+        $students = Student::all();
+
+        foreach($students as $student){
+            if(Auth::user()->id == $student?->user_id)
+            {
+                $student->courses()->attach($id);
+            }
+        }
+        return redirect()->route('infostudent', compact('student'));
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao leaveCourse
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para utilizar e deletar os dados da tabela pivo 
+    | course_student do relacionamento Many to Many entre Students e Courses
+    |
+    */
+    public function leaveCourse($id){
+
+        $students = Student::all();
+
+        foreach($students as $student){
+            if(Auth::user()->id == $student?->user_id)
+            {
+                $student->courses()->detach($id);
+            }
+        }
+        return redirect()->back();
     }
 
 }

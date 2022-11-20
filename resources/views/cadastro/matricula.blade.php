@@ -4,15 +4,15 @@
 
 @section('content')
 
-<div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Cadastro de Usuário</div>
+<div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Matrícula do Usuário</div>
 
 <br>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Cadastro de Professor
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalProfessor">
+  Matrícula de Professor
 </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalProfessor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -67,11 +67,11 @@
     </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Cadastro de Aluno
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalStudent">
+  Matrícula de Aluno
 </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -114,11 +114,6 @@
             <div class="mb-3">
                 <label for="cidade" class="form-label">Cidade</label>
                 <input type="text" name="cidade" class="form-control" id="cidade">
-            </div>
-
-            <div class="mb-3">
-                <label for="filme" class="form-label">Filme</label>
-                <input type="text" name="filme" class="form-control" id="filme">
             </div>
 
             <input type="hidden" name="user_id" value="{{ $id_user }}">

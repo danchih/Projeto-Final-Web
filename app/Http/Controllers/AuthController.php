@@ -24,10 +24,10 @@ class AuthController extends Controller
     public function dashboard(){
 
         if(Auth::check() === true){
-            if(Auth::user()->name === 'Secretaria'){
+            if(Auth::user()->email === 'secretaria@gmail.com'){
             return view(view: 'admin.dashboard');
             }else{
-                return redirect()->route('professor');
+                return view('arealogada');
             }
         }
         return redirect()->route(route: 'admin.login');
@@ -67,7 +67,7 @@ class AuthController extends Controller
         /** var_dump($request->all()); */
 
         $credentials = [
-            'name' => $request->name,
+            'email' => $request->email,
             'password' => $request->password
         ];
         /**

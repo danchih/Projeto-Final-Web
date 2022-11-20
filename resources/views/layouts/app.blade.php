@@ -39,20 +39,6 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ __('Área Logada') }}
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('admin.login') }}">{{ 'Aluno' }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('admin.login') }}">{{ 'Professor' }}</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ route('admin.login') }}">{{ 'Secretaria' }}</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-
-                            @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
                                 </li>

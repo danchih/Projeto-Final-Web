@@ -34,13 +34,18 @@ Route::post('/admin/login/do', [AuthController::class, 'login'])->name('admin.lo
 
 
 //Relacionamentos
-Route::get('/usuario/{id}', [UserController::class, 'show']);
-Route::get('/student/{student}', [StudentController::class, 'show']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/student/{student}', [StudentController::class, 'show'])->name('infostudent');
 Route::get('/professor/{id}', [ProfessorController::class, 'show']);
 Route::get('/course/{course}', [CourseController::class, 'show']);
 
 
-//Rotas para a troca de Senha
+//Rota que faz a ligação de Students e Courses
+Route::get('/course/join/{id}', [CourseController::class, 'joinCourse']);
+Route::delete('/course/leave/{id}', [CourseController::class, 'leaveCourse']);
+
+
+//Rota para editar informacoes de Login
 Route::get('usuario/editar/{user}', [UserController::class, 'formEditUser'])->name('user.edit');
 Route::put('usuario/edit/{user}', [UserController::class, 'edit'])->name('user.edit.do');
 
@@ -58,7 +63,16 @@ Route::get('/m_course', [CourseController::class, 'create']);
 Route::post('/m_course/do', [CourseController::class, 'store']);
 
 
+//Rota para editar informacoes de Cadastro
+Route::get('student/editar/{student}', [StudentController::class, 'formEditStudent'])->name('student.edit');
+Route::put('student/edit/{student}', [StudentController::class, 'edit'])->name('student.edit.do');
+
+Route::get('professor/editar/{professor}', [ProfessorController::class, 'formEditProfessor'])->name('professor.edit');
+Route::put('professor/edit/{professor}', [ProfessorController::class, 'edit'])->name('professor.edit.do');
+
+
 //Rotas de Dados
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/professors', [ProfessorController::class, 'index']);
 
