@@ -25,21 +25,49 @@
 
 @auth
     @if(Auth::user()->email === 'secretaria@gmail.com')
-        <h5>Alunos Matriculados: </h5>
+        <h5>Informações: </h5>
+        <p>Total de Inscritos: {{ count($students) }}</p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ALUNOS MATRICULADOS</th>
+                    <th scope="col">NOTA</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach($students as $student)
+                <tr>
+                    <td>{{ $student->nome }}</td>
+                    <td>{{ $student->nota }}</td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+    @elseif(Auth::user()->id === $professor?->user_id)
+
+        <h5>Informações: </h5>
         <p>Total de Inscritos: {{ count($students) }}</p>
         
-            @foreach($students as $student)
-                <p> -> {{ $student->nome }} </p>
-            @endforeach
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ALUNOS MATRICULADOS</th>
+                    <th scope="col">NOTA</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach($students as $student)
+                <tr>
+                    <td>{{ $student->nome }}</td>
+                    <td>{{ $student->nota }}</td>
 
-    @elseif(Auth::user()->id == $professor?->user_id)
-
-        <h5>Alunos Matriculados: </h5>
-        <p>Total de Inscritos: {{ count($students) }}</p>
-        
-            @foreach($students as $student)
-                <p> -> {{ $student->nome }} </p>
-            @endforeach
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
     @else
         <br>
@@ -50,10 +78,6 @@
     @endif
 
 @endauth
-
-<br>
-
-<a href="#" class="btn btn-primary">Voltar</a>
 
 
 @endsection
