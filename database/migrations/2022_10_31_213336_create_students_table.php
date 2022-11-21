@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');
-            $table->integer('nota')->nullable();
+            $table->string('nota')->nullable();
             $table->string('filme')->nullable();
             $table->timestamps();
         });

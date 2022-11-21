@@ -71,6 +71,10 @@ Route::get('professor/editar/{professor}', [ProfessorController::class, 'formEdi
 Route::put('professor/edit/{professor}', [ProfessorController::class, 'edit'])->name('professor.edit.do');
 
 
+//Rota para editar Notas de aluno
+Route::put('nota/edit/{student}', [StudentController::class, 'editNota'])->name('nota.edit.do');
+
+
 //Rotas de Dados
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/students', [StudentController::class, 'index']);

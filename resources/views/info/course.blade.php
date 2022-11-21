@@ -56,6 +56,7 @@
                 <tr>
                     <th scope="col">ALUNOS MATRICULADOS</th>
                     <th scope="col">NOTA</th>
+                    <th scope="col">EDITAR NOTA</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -63,7 +64,35 @@
                 <tr>
                     <td>{{ $student->nome }}</td>
                     <td>{{ $student->nota }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNota">
+                            Atribuir Nota
+                        </button>
 
+                        <div class="modal fade" id="ModalNota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nota de {{ $student->nome }} </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form class="row g-3" action="{{ route('nota.edit.do', ['student' => $student->id ]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="nota" class="form-label">Nota</label>
+                                        <input type="text" name="nota" class="form-control" id="nota">
+                                    </div>
+
+                                    <input type="submit" class="btn btn-primary" value="Atribuir">
+                                        
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
