@@ -9,7 +9,7 @@
 
 <a href="/" class="btn btn-primary">Increver-se em um Curso</a>
 
-<br>
+<br><br>
 
 <h5>Cursos dando Aula: </h5>
 
@@ -17,7 +17,6 @@
     @foreach($courses as $course)
     <div class="col">
         <div class="card h-100">
-            <img src="/img/alunos.webp" class="card-img-top h-75" alt="curso">
             <div class="card-body">
                 <h5 class="card-title">{{ $course->nome }}</h5>
                 <p class="card-text">Descrição: {{ $course->des_simplificada }}</p>
@@ -29,17 +28,22 @@
                 @else ($course->status == 3)
                     <p class="card-text">Matrículas Encerradas</p>
                 @endif
-        
-                <a href="/course/{{ $course->id }}" class="btn btn-primary">Mais Informações</a>
 
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <form action="/course/leave/{{ $course->id }}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger delete-btn">
+                        Sair do Curso
+                    </button>
+                </form>
+                <br>
+                <a href="/course/{{ $course->id }}" class="btn btn-primary">Mais Informações</a>
+                </div>
             </div>
         </div>
     </div>
     @endforeach 
 </div>
-
-<br><br>
-
-<a href="#" class="btn btn-primary">Voltar</a>
 
 @endsection

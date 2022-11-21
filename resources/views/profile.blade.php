@@ -80,11 +80,6 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" href="/professor/{{ $professor->id }}" role="button">Cursos Matriculados</a>
-
 @endif
-
-<br>
-<a href="#" class="btn btn-primary">Voltar</a>
 
 @endsection

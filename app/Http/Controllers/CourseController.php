@@ -123,12 +123,13 @@ class CourseController extends Controller
     |
     | Funcao utilizada para utilizar e deletar os dados da tabela pivo 
     | course_student do relacionamento Many to Many entre Students e Courses
+    | Tambem utilizada para deletar a relacao entre professor e course
     |
     */
     public function leaveCourse($id){
 
         $students = Student::all();
-        $professor = Professor::all();
+        $professors = Professor::all();
 
         foreach($students as $student){
             if(Auth::user()->id == $student?->user_id)
@@ -136,6 +137,14 @@ class CourseController extends Controller
                 $student->courses()->detach($id);
             }
         }
+
+        foreach($professors as $professor){
+            if(Auth::user()->id == $professor?->user_id)
+            {
+                $course = Course::where('id', $id)->update(['professor_id' => null]); 
+            }
+        }
+
         return redirect()->back();
     }
 
