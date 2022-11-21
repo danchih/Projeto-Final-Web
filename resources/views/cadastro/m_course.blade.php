@@ -28,6 +28,28 @@
         <label for="des_simplificada" class="form-label">Descrição Simplificada do Curso</label>
         <textarea name="des_simplificada" class="form-control" id="des_simplificada" rows="3"></textarea>
     </div>
+
+    <label for="imagem">Imagem do Curso</label>
+    
+    <div class="col-12">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="imagem" id="1" value="azul.jpg">
+            <img src="/img/azul.jpg" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="imagem" id="2" value="rosa.jpg">
+            <img src="/img/rosa.jpg" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="imagem" id="3" value="laranja.jpg">
+            <img src="/img/laranja.jpg" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="imagem" id="4" value="verde.jpg">
+            <img src="/img/verde.jpg" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+    </div>
+
     <div class="col-12">
         <input type="submit" class="btn btn-primary" value="Cadastrar">
     </div>

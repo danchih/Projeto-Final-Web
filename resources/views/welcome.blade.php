@@ -11,7 +11,7 @@
     @foreach($courses as $course)
     <div class="col">
         <div class="card h-100">
-            <img src="/img/alunos.webp" class="card-img-top h-75" alt="curso">
+            <img src="/img/{{ $course->imagem }}" class="card-img-top h-75" alt="curso">
             <div class="card-body">
                 <h5 class="card-title">{{ $course->nome }}</h5>
                 <p class="card-text">Descrição: {{ $course->des_simplificada }}</p>

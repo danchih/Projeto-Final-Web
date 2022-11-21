@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
 
     protected $table = 'courses';
-    protected $fillable = ['nome', 'descricao', 'des_simplificada', 'maximo', 'minimo', 'status'];
+    protected $fillable = ['nome', 'descricao', 'des_simplificada', 'maximo', 'minimo', 'status', 'imagem', 'professor_id'];
 
     //Relacionamento One (professor) to Many (courses)
     public function professor() {

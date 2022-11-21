@@ -25,21 +25,78 @@
 
 @auth
     @if(Auth::user()->email === 'secretaria@gmail.com')
-        <h5>Alunos Matriculados: </h5>
+        <h5>Informações: </h5>
+        <p>Total de Inscritos: {{ count($students) }}</p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ALUNOS MATRICULADOS</th>
+                    <th scope="col">NOTA</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach($students as $student)
+                <tr>
+                    <td>{{ $student->nome }}</td>
+                    <td>{{ $student->nota }}</td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+    @elseif(Auth::user()->id === $professor?->user_id)
+
+        <h5>Informações: </h5>
         <p>Total de Inscritos: {{ count($students) }}</p>
         
-            @foreach($students as $student)
-                <p> -> {{ $student->nome }} </p>
-            @endforeach
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ALUNOS MATRICULADOS</th>
+                    <th scope="col">NOTA</th>
+                    <th scope="col">EDITAR NOTA</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach($students as $student)
+                <tr>
+                    <td>{{ $student->nome }}</td>
+                    <td>{{ $student->nota }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNota">
+                            Atribuir Nota
+                        </button>
 
-    @elseif(Auth::user()->id == $professor?->user_id)
+                        <div class="modal fade" id="ModalNota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nota de {{ $student->nome }} </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form class="row g-3" action="{{ route('nota.edit.do', ['student' => $student->id ]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="nota" class="form-label">Nota</label>
+                                        <input type="text" name="nota" class="form-control" id="nota">
+                                    </div>
 
-        <h5>Alunos Matriculados: </h5>
-        <p>Total de Inscritos: {{ count($students) }}</p>
-        
-            @foreach($students as $student)
-                <p> -> {{ $student->nome }} </p>
-            @endforeach
+                                    <input type="submit" class="btn btn-primary" value="Atribuir">
+                                        
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
     @else
         <br>
@@ -50,10 +107,6 @@
     @endif
 
 @endauth
-
-<br>
-
-<a href="#" class="btn btn-primary">Voltar</a>
 
 
 @endsection

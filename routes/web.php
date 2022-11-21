@@ -34,7 +34,7 @@ Route::post('/admin/login/do', [AuthController::class, 'login'])->name('admin.lo
 
 
 //Relacionamentos
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user');
 Route::get('/student/{student}', [StudentController::class, 'show'])->name('infostudent');
 Route::get('/professor/{id}', [ProfessorController::class, 'show']);
 Route::get('/course/{course}', [CourseController::class, 'show']);
@@ -69,6 +69,10 @@ Route::put('student/edit/{student}', [StudentController::class, 'edit'])->name('
 
 Route::get('professor/editar/{professor}', [ProfessorController::class, 'formEditProfessor'])->name('professor.edit');
 Route::put('professor/edit/{professor}', [ProfessorController::class, 'edit'])->name('professor.edit.do');
+
+
+//Rota para editar Notas de aluno
+Route::put('nota/edit/{student}', [StudentController::class, 'editNota'])->name('nota.edit.do');
 
 
 //Rotas de Dados

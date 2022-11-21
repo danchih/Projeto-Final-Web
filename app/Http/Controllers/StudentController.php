@@ -114,6 +114,23 @@ class StudentController extends Controller
         return redirect()->back()->with('Dados atualizados com sucesso!!');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao editNota
+    |--------------------------------------------------------------------------
+    |
+    | Funcoao utilizada para editar nota do student
+    |
+    */
+
+    public function editNota(Student $student, Request $request){
+
+        $student->nota = $request->nota;
+        $student->save();
+
+        return redirect()->back();
+    }
+
 
 
 }

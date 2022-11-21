@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Course;
-
 use App\Models\Student;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Professor;
+
 
 class CourseController extends Controller
 {
@@ -57,6 +58,7 @@ class CourseController extends Controller
             'des_simplificada' => $request->des_simplificada,
             'maximo' => $request->maximo,
             'minimo' => $request->minimo,
+            'imagem' => $request->imagem,
         ]);
 
         return redirect()->route('admin');
@@ -89,11 +91,13 @@ class CourseController extends Controller
     |
     | Funcao utilizada para utilizar e salvar os dados da tabela pivo 
     | course_student do relacionamento Many to Many entre Students e Courses
+    | Tambem utilizada para relacionar professor com course
     |
     */
     public function joinCourse($id){
 
         $students = Student::all();
+        $professors = Professor::all();
 
         foreach($students as $student){
             if(Auth::user()->id == $student?->user_id)
@@ -101,7 +105,15 @@ class CourseController extends Controller
                 $student->courses()->attach($id);
             }
         }
-        return redirect()->route('infostudent', compact('student'));
+
+        foreach($professors as $professor){
+            if(Auth::user()->id == $professor?->user_id)
+            {
+                $course = Course::where('id', $id)->update(['professor_id' => $professor->id]); 
+            }
+        }
+
+        return redirect()->back();
     }
 
     /*
@@ -111,11 +123,13 @@ class CourseController extends Controller
     |
     | Funcao utilizada para utilizar e deletar os dados da tabela pivo 
     | course_student do relacionamento Many to Many entre Students e Courses
+    | Tambem utilizada para deletar a relacao entre professor e course
     |
     */
     public function leaveCourse($id){
 
         $students = Student::all();
+        $professors = Professor::all();
 
         foreach($students as $student){
             if(Auth::user()->id == $student?->user_id)
@@ -123,6 +137,14 @@ class CourseController extends Controller
                 $student->courses()->detach($id);
             }
         }
+
+        foreach($professors as $professor){
+            if(Auth::user()->id == $professor?->user_id)
+            {
+                $course = Course::where('id', $id)->update(['professor_id' => null]); 
+            }
+        }
+
         return redirect()->back();
     }
 

@@ -50,12 +50,36 @@
     <div class="h1">{{ $professor->nome }}</div>
     <br><br>
 
-    <a class="btn btn-primary" href="/usuario/editar/{{ Auth::user()->id }}" role="button">Trocar de Senha</a>
-    <a class="btn btn-primary" href="/professor/{{ $professor->id }}" role="button">Cursos Matriculados</a>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Alteração de Cadastro</h5>
+                <p class="card-text">Altere suas informações de cadastro tais como nome, CPF, CEP, avatar ...</p>
+                <a class="btn btn-primary" href="/professor/editar/{{ $professor->id }}" role="button">Alterar Cadastro</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Alteração de Usuário</h5>
+                <p class="card-text">Altere suas informações de login tais como usuário, email e senha</p>
+                <a class="btn btn-primary" href="/usuario/editar/{{ Auth::user()->id }}" role="button">Alterar Usuário</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cursos Matriculados</h5>
+                <p class="card-text">Veja os cursos que você se matriculou na plataforma</p>
+                <a href="/professor/{{ $professor->id }}" class="btn btn-primary">Ver Cursos</a>
+            </div>
+            </div>
+        </div>
+    </div>
 
 @endif
-
-<br>
-<a href="#" class="btn btn-primary">Voltar</a>
 
 @endsection

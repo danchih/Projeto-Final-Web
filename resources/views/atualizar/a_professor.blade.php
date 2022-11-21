@@ -44,12 +44,40 @@
         <input type="text" name="cidade" class="form-control" id="cidade" value="{{ $professor->cidade }}">
     </div>
 
+    <label for="imagem">Escolha um Avatar</label>
+    
     <div class="col-12">
-        <label for="avatar" class="form-label">Avatar</label>
-        <input type="text" name="avatar" class="form-control" id="avatar" value="{{ $professor->avatar }}">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="1" value="avatar1.png">
+            <img src="/img/avatar1.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="2" value="avatar2.png">
+            <img src="/img/avatar2.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="3" value="avatar3.png">
+            <img src="/img/avatar3.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="4" value="avatar4.png">
+            <img src="/img/avatar4.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="5" value="avatar5.png">
+            <img src="/img/avatar5.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="6" value="avatar6.png">
+            <img src="/img/avatar6.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input mt-0" type="radio" name="avatar" id="7" value="avatar7.png">
+            <img src="/img/avatar7.png" class="rounded-circle ms-2" style="width: 100px; height:100px; float:left">
+        </div>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Cadastrar">
+    <input type="submit" class="btn btn-primary" value="Editar Cadastro">
     
 </form>
 
