@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //Relacionamento One (user) to One (student)
+    public function student(){
+        return $this->hasOne(Student::class, foreignKey: 'user_id', localKey: 'id');
+    }
+
+    //Relacionamento One (user) to One (professor)
+    public function professor(){
+        return $this->hasOne(Professor::class, foreignKey: 'user_id', localKey: 'id');
+    }
+
 }

@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Professor')
 
 @section('content')
 
 
-<div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Cursos de Informática</div>
+<div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Cursos Matriculados</div>
+
+<a href="/" class="btn btn-primary">Increver-se em um Curso</a>
+
+<br>
+
+<h5>Cursos dando Aula: </h5>
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
     @foreach($courses as $course)
@@ -32,5 +38,8 @@
     @endforeach 
 </div>
 
+<br><br>
+
+<a href="#" class="btn btn-primary">Voltar</a>
 
 @endsection

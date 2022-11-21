@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('des_simplificada');
             $table->integer('maximo');
             $table->integer('minimo');
-            $table->integer('status');
+            $table->integer('status') ->default('1');
+            $table->unsignedBigInteger('professor_id')->nullable();
             $table->timestamps();
         });
     }
