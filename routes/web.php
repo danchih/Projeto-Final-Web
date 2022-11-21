@@ -34,7 +34,7 @@ Route::post('/admin/login/do', [AuthController::class, 'login'])->name('admin.lo
 
 
 //Relacionamentos
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user');
 Route::get('/student/{student}', [StudentController::class, 'show'])->name('infostudent');
 Route::get('/professor/{id}', [ProfessorController::class, 'show']);
 Route::get('/course/{course}', [CourseController::class, 'show']);

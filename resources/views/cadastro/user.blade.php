@@ -13,6 +13,14 @@
                     <form method="POST" action="{{ route('user.registro.do') }}">
                         @csrf
 
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">Usuário</label>
 

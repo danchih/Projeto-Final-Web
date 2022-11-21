@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('minimo');
             $table->integer('status') ->default('1');
             $table->unsignedBigInteger('professor_id')->nullable();
+            $table->string('imagem');
             $table->timestamps();
         });
     }

@@ -91,7 +91,7 @@ class ProfessorController extends Controller
     |
     */
 
-    public function formEditStudent(Professor $professor){
+    public function formEditProfessor(Professor $professor){
         return view('atualizar.a_professor', ['professor' => $professor]);
     }
 
@@ -108,7 +108,7 @@ class ProfessorController extends Controller
 
         $professor->save();
 
-        return redirect()->back()->with('Dados atualizados com sucesso!!');
+        return redirect()->back()->with('msg','Dados atualizados com sucesso!!');
     }
 
 

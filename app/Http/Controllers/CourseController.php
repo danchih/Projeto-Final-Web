@@ -57,6 +57,7 @@ class CourseController extends Controller
             'des_simplificada' => $request->des_simplificada,
             'maximo' => $request->maximo,
             'minimo' => $request->minimo,
+            'imagem' => $request->imagem,
         ]);
 
         return redirect()->route('admin');
