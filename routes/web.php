@@ -75,6 +75,11 @@ Route::put('professor/edit/{professor}', [ProfessorController::class, 'edit'])->
 Route::put('nota/edit/{student}', [StudentController::class, 'editNota'])->name('nota.edit.do');
 
 
+//Rota para deletar
+Route::delete('/student/delete/{id}', [StudentController::class, 'deleteStudent']);
+Route::delete('/professor/delete/{id}', [ProfessorController::class, 'deleteProfessor']);
+
+
 //Rotas de Dados
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/students', [StudentController::class, 'index']);

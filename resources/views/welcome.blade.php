@@ -13,9 +13,10 @@
         <div class="card h-100">
             <img src="/img/{{ $course->imagem }}" class="card-img-top h-75" alt="curso">
             <div class="card-body">
-                <h5 class="card-title">{{ $course->nome }}</h5>
-                <p class="card-text">Descrição: {{ $course->des_simplificada }}</p>
-                <p class="card-text">Status:</p>
+                <h4 class="card-title">{{ $course->nome }}</h4>
+                <p class="card-text text-decoration-underline">Descrição: </p>
+                <p>{{ $course->des_simplificada }}</p>
+                <p class="card-text text-decoration-underline">Status:</p>
                 @if ($course->status == 1)
                     <p>Matrículas Abertas - Mínimo de alunos não atingido!</p>
                 @elseif ($course->status == 2)

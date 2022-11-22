@@ -23,6 +23,16 @@
 <h5> Descrição: </h5>
 <p>{{ $course->descricao }}</p> 
 
+<h5> Status: </h5>
+@if ($course->status == 1)
+    <p>Matrículas Abertas - Mínimo de alunos não atingido!</p>
+@elseif ($course->status == 2)
+    <p>Matrículas Abertas - Curso acontecerá!</p>
+@else ($course->status == 3)
+    <p>Matrículas Encerradas</p>
+@endif
+ 
+
 @auth
     @if(Auth::user()->email === 'secretaria@gmail.com')
         <h5>Informações: </h5>
@@ -87,7 +97,7 @@
 
                                     <input type="submit" class="btn btn-primary" value="Atribuir">
                                         
-                                    </form>
+                                </form>
                                 </div>
                                 </div>
                             </div>
@@ -99,11 +109,13 @@
         </table>
 
     @else
+        @if($course->status != 3)
         <br>
         <form action="/course/join/{{ $course->id }}" method="POST">
             @csrf
             <a href="/course/join/{{ $course->id }}" class="btn btn-primary" id="course-submit" onclick="course.preventDefault; this.closest('form').submit();">Inscrever-se</a>
         </form>
+        @endif
     @endif
 
 @endauth

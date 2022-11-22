@@ -7,7 +7,9 @@
 
 <div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">Cursos Matriculados</div>
 
-<a href="/" class="btn btn-primary">Increver-se em um Curso</a>
+@if(Auth::user()->email != 'secretaria@gmail.com')
+    <a href="/" class="btn btn-primary">Increver-se em um Curso</a>
+@endif
 
 <br><br>
 

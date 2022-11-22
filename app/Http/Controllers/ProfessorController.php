@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Professor;
+use App\Models\User;
+use App\Models\Course;
 
 class ProfessorController extends Controller
 {
@@ -108,7 +110,40 @@ class ProfessorController extends Controller
 
         $professor->save();
 
-        return redirect()->back()->with('msg','Dados atualizados com sucesso!!');
+        return redirect()->route('admin');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao deleteProfessor
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para deletar um Professor
+    |
+    */
+    public function deleteProfessor($id){
+
+        $courses = Course::all();
+        $users = User::all();
+        
+        $professor = Professor::where('id', $id)->first();
+        
+        foreach($courses as $course){
+            if($professor->id == $course->professor_id){
+                $course->update(['professor_id' => null]); 
+            }
+        }
+
+        foreach($users as $user){
+            if($professor->user_id == $user->id){
+                $user->professor->delete($id);
+                $user->delete();
+            }
+        }
+
+        $professor->delete();
+        
+        return redirect()->back();
     }
 
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Student;
+use App\Models\Course;
+use App\Models\Professor;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -111,7 +114,7 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->back()->with('Dados atualizados com sucesso!!');
+        return redirect()->route('admin');
     }
 
     /*
@@ -131,6 +134,36 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Funcao deleteStudent
+    |--------------------------------------------------------------------------
+    |
+    | Funcao utilizada para deletar um Student 
+    |
+    */
 
+    public function deleteStudent($id){
+
+        $courses = Course::all();
+        $users = User::all();
+        
+        $student = Student::where('id', $id)->first();
+        
+        foreach($courses as $course){
+            $course->students()->detach($id);
+        }
+
+        foreach($users as $user){
+            if($student->user_id == $user->id){
+                $user->student->delete($id);
+                $user->delete();
+            }
+        }
+        
+        $student->delete();
+        
+        return redirect()->back();
+    }
 
 }
