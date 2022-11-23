@@ -7,7 +7,6 @@
 
 <div class="h2 pb-3 mb-4 text-dark border-bottom border-2 border-dark">{{ $student->nome }}</div>
 
-<p>User: {{ $user->name }}</p>
 
 <h5>Cursos Matriculados: </h5>
 
@@ -38,6 +37,8 @@
     </tbody>
 </table>
 
-<a href="{{ route('admin') }}" class="btn btn-primary">Voltar</a>
+@if(Auth::user()->email != 'secretaria@gmail.com')
+    <a href="{{ route('admin') }}" class="btn btn-primary">Voltar</a>
+@endif
 
 @endsection

@@ -9,17 +9,26 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">NOME</th>
-            <th scope="col">CURSOS</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
         @foreach($professors as $professor)
         <tr>
-            <th scope="row">{{ $professor->id }}</th>
             <td>{{ $professor->nome }}</td>
-            <td><a class="btn btn-primary" href="/professor/{{ $professor->id }}">Mais Informações</a></td>
+            <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-primary" href="/professor/{{ $professor->id }}">Cursos Matriculados</a>
+                <form action="/professor/delete/{{ $professor->id }}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger delete-btn">
+                        Deletar Professor
+                    </button>
+                </form>
+            </div>
+            </td>
         </tr>
         @endforeach
     </tbody>

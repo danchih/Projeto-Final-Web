@@ -73,12 +73,33 @@ class CourseController extends Controller
     | e Courses
     | Funcao utilizada para fazer um relacionamento Many to Many entre Students 
     | e Courses
+    | Funcao utilizada para atualizar status
     |
     */
     public function show(Course $course){
         
         $professor = $course->professor()->first();
         $students = $course->students()->get();
+
+        if(count($students) >= $course->minimo)
+        {
+            $status = Course::where('id', $course->id)->update(['status' => '2']);
+        }
+
+        if(count($students) === $course->maximo)
+        {
+            $status = Course::where('id', $course->id)->update(['status' => '3']);
+        }
+
+        if(count($students) < $course->minimo)
+        {
+            $status = Course::where('id', $course->id)->update(['status' => '1']);
+        }
+        elseif(count($students) < $course->maximo)
+        {
+            $status = Course::where('id', $course->id)->update(['status' => '2']);
+        }
+
 
         return view('info.course', compact('course', 'professor', 'students'));
 
@@ -121,9 +142,9 @@ class CourseController extends Controller
     | Funcao leaveCourse
     |--------------------------------------------------------------------------
     |
-    | Funcao utilizada para utilizar e deletar os dados da tabela pivo 
-    | course_student do relacionamento Many to Many entre Students e Courses
-    | Tambem utilizada para deletar a relacao entre professor e course
+    | Funcao utilizada para deletar os dados da tabela pivo course_student 
+    | do relacionamento Many to Many entre Students e Courses
+    | Tambem utilizada para deletar a relacao entre Professor e Course
     |
     */
     public function leaveCourse($id){
