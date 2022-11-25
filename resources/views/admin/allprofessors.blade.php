@@ -34,4 +34,9 @@
     </tbody>
 </table>
 
+<a  href="{{ url()->previous() }}">
+    <i class="fa fa-arrow-circle-o-left"></i>
+    <span class="btn btn-primary">Voltar</span>
+</a>
+
 @endsection
