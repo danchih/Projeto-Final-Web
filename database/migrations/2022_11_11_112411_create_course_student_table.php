@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('course_student', function (Blueprint $table) {
             $table->foreignId('student_id')->constrained();
             $table->foreignId('course_id')->constrained();
+            $table->decimal('nota', 3, 1)->nullable();
+            $table->timestamps();
         });
     }
 

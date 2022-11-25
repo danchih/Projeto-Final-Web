@@ -72,7 +72,8 @@ Route::put('professor/edit/{professor}', [ProfessorController::class, 'edit'])->
 
 
 //Rota para editar Notas de aluno
-Route::put('nota/edit/{student}', [StudentController::class, 'editNota'])->name('nota.edit.do');
+Route::get('nota/edit/{student}{course}', [StudentController::class, 'editNotaForm'])->name('nota.edit');
+Route::put('nota/edit/{student}{course}', [StudentController::class, 'editNota'])->name('nota.edit.do');
 
 
 //Rota para deletar

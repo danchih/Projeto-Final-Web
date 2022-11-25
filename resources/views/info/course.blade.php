@@ -38,6 +38,10 @@
         <h5>Informações: </h5>
         <p>Total de Inscritos: {{ count($students) }}</p>
 
+        <br><br>
+
+        <a href="/all/permissoes/{{ $course->id }}" class="btn btn-primary">Matricular Alunos e Professor</a>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -66,7 +70,7 @@
                 <tr>
                     <th scope="col">ALUNOS MATRICULADOS</th>
                     <th scope="col">NOTA</th>
-                    <th scope="col">EDITAR NOTA</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -75,38 +79,19 @@
                     <td>{{ $student->nome }}</td>
                     <td>{{ $student->nota }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNota">
-                            Atribuir Nota
-                        </button>
-
-                        <div class="modal fade" id="ModalNota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nota de {{ $student->nome }} </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                <form class="row g-3" action="{{ route('nota.edit.do', ['student' => $student->id ]) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="mb-3">
-                                        <label for="nota" class="form-label">Nota</label>
-                                        <input type="text" name="nota" class="form-control" id="nota">
-                                    </div>
-
-                                    <input type="submit" class="btn btn-primary" value="Atribuir">
-                                        
-                                </form>
-                                </div>
-                                </div>
-                            </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ route('nota.edit', [$student, $course]) }}" class="btn btn-primary">Atribuir Nota</a>
                         </div>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <a  href="{{ url()->previous() }}">
+            <i class="fa fa-arrow-circle-o-left"></i>
+            <span class="btn btn-primary">Voltar</span>
+        </a>
 
     @else
         @if($course->status != 3)

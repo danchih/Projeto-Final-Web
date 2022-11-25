@@ -81,25 +81,20 @@ class CourseController extends Controller
         $professor = $course->professor()->first();
         $students = $course->students()->get();
 
-        if(count($students) >= $course->minimo)
-        {
+        if(count($students) >= $course->minimo){
             $status = Course::where('id', $course->id)->update(['status' => '2']);
         }
 
-        if(count($students) === $course->maximo)
-        {
+        if(count($students) === $course->maximo){
             $status = Course::where('id', $course->id)->update(['status' => '3']);
         }
 
-        if(count($students) < $course->minimo)
-        {
+        if(count($students) < $course->minimo){
             $status = Course::where('id', $course->id)->update(['status' => '1']);
         }
-        elseif(count($students) < $course->maximo)
-        {
+        elseif(count($students) < $course->maximo){
             $status = Course::where('id', $course->id)->update(['status' => '2']);
         }
-
 
         return view('info.course', compact('course', 'professor', 'students'));
 

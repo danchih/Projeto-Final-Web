@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Course;
 use App\Models\Professor;
 use App\Models\User;
+use App\Models\Course_student;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -126,12 +127,17 @@ class StudentController extends Controller
     |
     */
 
-    public function editNota(Student $student, Request $request){
+    public function editNotaForm(Student $student, Course $course){
 
-        $student->nota = $request->nota;
-        $student->save();
+        return view('atualizar.nota', compact('student', 'course'));
+    }
 
+    public function editNota(Student $student, Course $course, Request $request){
+
+        $nota = Course_student::where('student_id', $student->id)->where('course_id', $course->id)->update(['nota' => $request->nota]);
+        
         return redirect()->back();
+
     }
 
     /*

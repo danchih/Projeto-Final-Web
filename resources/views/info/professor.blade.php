@@ -31,6 +31,7 @@
                     <p class="card-text">Matrículas Encerradas</p>
                 @endif
 
+                @if(Auth::user()->email != 'secretaria@gmail.com')
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <form action="/course/leave/{{ $course->id }}" method="POST">
                     @csrf
@@ -39,6 +40,7 @@
                         Sair do Curso
                     </button>
                 </form>
+                @endif
                 <br>
                 <a href="/course/{{ $course->id }}" class="btn btn-primary">Mais Informações</a>
                 </div>
@@ -47,5 +49,10 @@
     </div>
     @endforeach 
 </div>
+
+<a  href="{{ url()->previous() }}">
+    <i class="fa fa-arrow-circle-o-left"></i>
+    <span class="btn btn-primary">Voltar</span>
+</a>
 
 @endsection
