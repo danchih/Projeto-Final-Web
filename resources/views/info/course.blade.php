@@ -53,7 +53,11 @@
                 @foreach($students as $student)
                 <tr>
                     <td>{{ $student->nome }}</td>
-                    <td>{{ $student->nota }}</td>
+                    @foreach($notas as $nota)
+                        @if($nota?->student_id === $student?->id)
+                            <td>{{ $nota->nota }}</td>
+                        @endif
+                    @endforeach
 
                 </tr>
                 @endforeach
@@ -104,18 +108,17 @@
             @csrf
             <a href="/course/join/{{ $course->id }}" class="btn btn-primary" id="course-submit" onclick="course.preventDefault; this.closest('form').submit();">Inscrever-se</a>
         </form>
-
-        <br><br>
-
-        <a  href="{{ url()->previous() }}">
-            <i class="fa fa-arrow-circle-o-left"></i>
-            <span class="btn btn-primary">Voltar</span>
-        </a>
-
         @endif
     @endif
 
 @endauth
+
+<br><br>
+
+<a  href="{{ url()->previous() }}">
+    <i class="fa fa-arrow-circle-o-left"></i>
+    <span class="btn btn-primary">Voltar</span>
+</a>
 
 
 @endsection

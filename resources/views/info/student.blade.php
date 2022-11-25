@@ -27,8 +27,13 @@
         @foreach($courses as $course)
         <tr>
             <td>{{ $course->nome }}</td>
-            <td>{{ $student->nota }}</td>
+            @foreach($notas as $nota)
+                @if($nota?->course_id === $course?->id)
+                    <td>{{ $nota->nota }}</td>
+                @endif
+            @endforeach
             <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <form action="/course/leave/{{ $course->id }}" method="POST">
                     @csrf
                     @method("DELETE")
@@ -36,6 +41,7 @@
                         Sair do Curso
                     </button>
                 </form>
+            </div>
             </td>
         </tr>
         @endforeach
