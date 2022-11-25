@@ -20,7 +20,7 @@
         <tr>
             <th scope="col">CURSOS</th>
             <th scope="col">NOTA</th>
-            <th scope="col">#</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
