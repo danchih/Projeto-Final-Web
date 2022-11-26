@@ -38,9 +38,7 @@
         <h5>Informações: </h5>
         <p>Total de Inscritos: {{ count($students) }}</p>
 
-        <br><br>
-
-        <a href="/all/permissoes/{{ $course->id }}" class="btn btn-primary">Matricular Alunos e Professor</a>
+        <br>
 
         <table class="table table-striped">
             <thead>
@@ -58,7 +56,6 @@
                             <td>{{ $nota->nota }}</td>
                         @endif
                     @endforeach
-
                 </tr>
                 @endforeach
             </tbody>
@@ -95,11 +92,6 @@
                 @endforeach
             </tbody>
         </table>
-
-        <a  href="{{ url()->previous() }}">
-            <i class="fa fa-arrow-circle-o-left"></i>
-            <span class="btn btn-primary">Voltar</span>
-        </a>
 
     @else
         @if($course->status != 3)

@@ -33,6 +33,7 @@
                 @endif
             @endforeach
             <td>
+            @if(Auth::user()->email != 'secretaria@gmail.com')
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <form action="/course/leave/{{ $course->id }}" method="POST">
                     @csrf
@@ -42,6 +43,7 @@
                     </button>
                 </form>
             </div>
+            @endif
             </td>
         </tr>
         @endforeach
