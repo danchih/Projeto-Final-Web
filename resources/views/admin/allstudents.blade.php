@@ -20,6 +20,7 @@
             <td>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a class="btn btn-primary" href="/student/{{ $student->id }}">Cursos Matriculados</a>
+                <a class="btn btn-secondary" href="/student/editar/{{ $student->id }}" role="button">Alterar Cadastro</a>
                 <form action="/student/delete/{{ $student->id }}" method="POST">
                     @csrf
                     @method("DELETE")

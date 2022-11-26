@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Professor;
+use App\Models\Course_student;
 
 
 class CourseController extends Controller
@@ -80,6 +81,7 @@ class CourseController extends Controller
         
         $professor = $course->professor()->first();
         $students = $course->students()->get();
+        $notas = Course_student::where('course_id', $course->id)->get();
 
         if(count($students) >= $course->minimo){
             $status = Course::where('id', $course->id)->update(['status' => '2']);
@@ -96,7 +98,7 @@ class CourseController extends Controller
             $status = Course::where('id', $course->id)->update(['status' => '2']);
         }
 
-        return view('info.course', compact('course', 'professor', 'students'));
+        return view('info.course', compact('course', 'professor', 'students', 'notas'));
 
     }
 

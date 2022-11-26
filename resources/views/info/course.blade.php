@@ -38,9 +38,7 @@
         <h5>Informações: </h5>
         <p>Total de Inscritos: {{ count($students) }}</p>
 
-        <br><br>
-
-        <a href="/all/permissoes/{{ $course->id }}" class="btn btn-primary">Matricular Alunos e Professor</a>
+        <br>
 
         <table class="table table-striped">
             <thead>
@@ -53,8 +51,11 @@
                 @foreach($students as $student)
                 <tr>
                     <td>{{ $student->nome }}</td>
-                    <td>{{ $student->nota }}</td>
-
+                    @foreach($notas as $nota)
+                        @if($nota?->student_id === $student?->id)
+                            <td>{{ $nota->nota }}</td>
+                        @endif
+                    @endforeach
                 </tr>
                 @endforeach
             </tbody>
@@ -77,7 +78,11 @@
                 @foreach($students as $student)
                 <tr>
                     <td>{{ $student->nome }}</td>
-                    <td>{{ $student->nota }}</td>
+                    @foreach($notas as $nota)
+                        @if($nota?->student_id === $student?->id)
+                            <td>{{ $nota->nota }}</td>
+                        @endif
+                    @endforeach
                     <td>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{ route('nota.edit', [$student, $course]) }}" class="btn btn-primary">Atribuir Nota</a>
@@ -87,11 +92,6 @@
                 @endforeach
             </tbody>
         </table>
-
-        <a  href="{{ url()->previous() }}">
-            <i class="fa fa-arrow-circle-o-left"></i>
-            <span class="btn btn-primary">Voltar</span>
-        </a>
 
     @else
         @if($course->status != 3)
@@ -104,6 +104,13 @@
     @endif
 
 @endauth
+
+<br><br>
+
+<a  href="{{ url()->previous() }}">
+    <i class="fa fa-arrow-circle-o-left"></i>
+    <span class="btn btn-primary">Voltar</span>
+</a>
 
 
 @endsection

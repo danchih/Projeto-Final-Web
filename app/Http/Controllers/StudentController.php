@@ -84,8 +84,9 @@ class StudentController extends Controller
 
         $courses = $student->courses()->get();
         $user = $student->user()->first();
+        $notas = Course_student::where('student_id', $student->id)->get();
 
-        return view('info.student', compact('student', 'user', 'courses'));
+        return view('info.student', compact('student', 'user', 'courses', 'notas'));
     }
 
     /*
