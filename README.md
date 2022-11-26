@@ -61,6 +61,8 @@ Acesse o projeto
 Acesse o phpmyadmin
 [http://localhost:8081](http://localhost:8081)
 
+Acesse as tabelas MySQL pré-existente na pasta: .MySQL
+
 
 ### Pessoas Desenvolvedoras: 
 - Beatriz Cupa Newman
