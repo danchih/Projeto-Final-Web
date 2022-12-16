@@ -74,4 +74,4 @@ Acesso de Login da Secretaria:
 - Flávia Cristina Medeiros
 - Giovana Salazar Alarcon
 - Luana Bresciani Baptista
-- Enzo Frabricio Monteiro Correia de Souza
+- Enzo Fabricio Monteiro Correia de Souza
