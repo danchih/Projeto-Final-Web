@@ -63,9 +63,9 @@ Acesse o phpmyadmin
 
 Acesso as tabelas MySQL pré-existente na pasta: .MySQL
 
-Acesso de Login da Secretaria: 
-Email Adress: secretaria@gmail.com
-Senha: 12345678 (senha de todos os usuários)
+###Acesso de Login da Secretaria: 
+- Email Adress: secretaria@gmail.com
+- Senha: 12345678 (senha de todos os usuários)
 
 
 ### Pessoas Desenvolvedoras: 
