@@ -61,7 +61,11 @@ Acesse o projeto
 Acesse o phpmyadmin
 [http://localhost:8081](http://localhost:8081)
 
-Acesse as tabelas MySQL pré-existente na pasta: .MySQL
+Acesso as tabelas MySQL pré-existente na pasta: .MySQL
+
+Acesso de Login da Secretaria: 
+-secretaria@gmail.com
+-12345678 (senha de todos os usuários)
 
 
 ### Pessoas Desenvolvedoras: 
